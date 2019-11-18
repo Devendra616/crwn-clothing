@@ -31,7 +31,8 @@ class App extends React.Component {
             id:snapshot.id,
             ...snapshot.data()
           }
-        })
+        });
+        console.log(this.state);
       })
      } else {
        //userAuth=null; user might have logged out or not exist so reset state
@@ -39,7 +40,7 @@ class App extends React.Component {
      }
 
     
-     createUserProfileDocument(user) ;
+     createUserProfileDocument(userAuth) ;
     });
   }
 
