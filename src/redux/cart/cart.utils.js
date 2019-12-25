@@ -1,5 +1,3 @@
-import { removeItem } from "./cart.action";
-
 // Add cartItemToAdd to existing cartItems
 export const addItemToCart = (cartItems, cartItemToAdd) => {
    const existingCartItem = cartItems.find(
