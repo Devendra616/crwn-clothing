@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import './header.styles.scss';
+
+import {HeaderContainer, LogoContainer, OptionsContainer, OptionContainerLink} from './header.styles';
 import {ReactComponent as Logo } from '../../assets/crown.svg';
 import {auth} from '../../firebase/firebase.util';
 import {connect} from 'react-redux';
@@ -11,23 +11,23 @@ import {selectCurrentUser } from '../../redux/user/user.selectors';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 const Header = ({currentUser, hidden}) => (
-    <div className='header'>
-        <Link to='/' className='logo-container'>
+    <HeaderContainer>
+        <LogoContainer to='/'>
             <Logo className='logo'/>
-        </Link>
-        <div className='options'>
-            <Link className='option' to='/shop'>SHOP</Link>
-            <Link className='option' to='/contact'>CONTACT</Link>
+        </LogoContainer>
+        <OptionsContainer>
+            <OptionContainerLink to='/shop'>SHOP</OptionContainerLink>
+            <OptionContainerLink to='/contact'>CONTACT</OptionContainerLink>
             {
                 currentUser ?
-                <div className='option' onClick={()=> auth.signOut()}>SIGN OUT</div>
+                <OptionContainerLink as='div' onClick={()=> auth.signOut()}>SIGN OUT</OptionContainerLink>
                 :
-                <Link className='option' to='/signIn'>SIGN IN</Link>
+                <OptionContainerLink to='/signIn'>SIGN IN</OptionContainerLink>
             }
             <CartIcon />
-        </div> 
+        </OptionsContainer> 
         {hidden ? null : <CartDropdown />}   
-    </div>
+    </HeaderContainer>
 );
 
 //state here is top level root reducer 
