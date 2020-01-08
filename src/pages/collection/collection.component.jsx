@@ -7,7 +7,7 @@ import { CollectionPageContainer, CollectionTitle, ItemsContainer} from './colle
 const CollectionPage = ({collection}) =>  {
     const {items, title} = collection;
     return (
-        <CollectionPageContainer>
+    <CollectionPageContainer>
         <CollectionTitle>{title}</CollectionTitle>  
         <ItemsContainer> 
             {items.map( item => (<CollectionItem key={item.id} item={item} />))}

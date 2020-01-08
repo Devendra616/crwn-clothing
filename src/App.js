@@ -20,7 +20,7 @@ import {setCurrentUser} from './redux/user/user.action';
 class App extends React.Component {
  
   unsubscribeFromAuth = null;
-
+  
   componentDidMount() {
     const {setCurrentUser, collectionsArray}= this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
@@ -54,6 +54,7 @@ class App extends React.Component {
   }
 
   render() {
+    
     return (
       <div>
         <Header />

@@ -1,21 +1,33 @@
 import styled from 'styled-components';
+import { device } from '../../devices';
 
 export const CollectionPageContainer = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
 `;
 
 export const CollectionTitle = styled.h2`
     font-size: 38px;
-    margin: 0 auto 30px;
+    margin: 0 auto 30px;    
 `;
 
 export const ItemsContainer = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
 
     & > div {
         margin-bottom: 30px;
       }
+ 
+   /* switch to more items for larger devices*/
+  @media ${device.tablet} {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 7px;
+  } 
+    /* switch to more items for larger devices*/
+  @media ${device.laptop} {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+  }  
 `;
