@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-
+import { device } from '../../devices';
 
 export const CheckoutPageContainer = styled.div`
-    width: 55%;
+    width: 97%;
     min-height: 90vh;
     display: flex;
     flex-direction: column;
@@ -12,6 +12,17 @@ export const CheckoutPageContainer = styled.div`
     button {
       margin-left: auto;
       margin-top: 50px;
+      width:100%;
+    }
+
+    @media ${device.tablet} { 
+        width: 55%;
+
+    button {
+            margin-left: auto;
+            margin-top: 50px;
+            width:inherit;
+        }
     }
 `;
 
@@ -35,12 +46,20 @@ export const HeaderBlock = styled.div`
 export const TotalContainer = styled.div`
     margin-top: 30px;
     margin-left: auto;
-    font-size: 36px;
+    font-size: 28px;
+
+    @media ${device.tablet} { 
+        font-size: 36px;
+    }
 `;
 
 export const TestWarning = styled.div`
     color: red;
-    font-size: 24px;
+    font-size: 18px;
     text-align: center;
     margin-top: 40px;
+
+    @media ${device.tablet} { 
+        font-size: 24px;
+    }
 `;
