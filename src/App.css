@@ -1,6 +1,6 @@
 body {
     font-family: 'Open Sans Condensed';
-    padding:20px 60px;
+    padding:20px 60px;    
 }
 
 a {
@@ -11,3 +11,10 @@ a {
 * {
     box-sizing: border-box;
 }
+
+/* mobile devices */
+@media (max-width: 768px) {    
+    body{
+        padding: 20px 30px;
+    }
+  }

@@ -6,10 +6,10 @@ export const HomePageContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 80px;
+    padding: 10px 5px;
 
-    // reduce padding for smaller devices
-  @media ${device.tablet} {
-    padding: 10px 60px;
+    /* increase padding for larger devices */
+  @media ${device.tablet} {    
+    padding: 20px 80px;
   }
 `;
