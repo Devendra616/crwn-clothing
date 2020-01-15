@@ -43,6 +43,24 @@ firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
+/* Converts snapshot object from firebases to map object as in shop.js */
+export const convertCollectionSnapshotToMap = (collectionSnapshot) => {
+  //collections.docs gives query snapshot from collection ref
+  const transformedCollection = collectionSnapshot.docs.map( docSnapshot => {
+    const {title, items} = docSnapshot.data();
+    return {
+      id: docSnapshot.id,
+      title,
+      items,
+      routeName: encodeURI(title.toLowerCase())      
+    }
+  });
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+  },{})
+}
+
 export const addCollectionsAndDocuments = async (collectionKey, objectsToAdd) => {
   const collectionRef = firestore.collection(collectionKey);
   console.log(collectionRef);
