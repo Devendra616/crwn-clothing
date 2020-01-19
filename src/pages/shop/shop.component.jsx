@@ -19,6 +19,8 @@ class ShopPage extends React.Component {
     componentDidMount(){
         const {updateCollections} = this.props; 
         const collectionRef = firestore.collection('collections');
+
+        /* //subscription pattern
         //whenever the snapshot updates or runs first time it sends snapshot of collection obj array
         this.unsubscribeFromSnapshot = collectionRef.onSnapshot( async snapshot => {
             const collectionsMap = convertCollectionSnapshotToMap(snapshot);
@@ -26,12 +28,28 @@ class ShopPage extends React.Component {
             await updateCollections(collectionsMap);
             this.setState({loading:false});
         });
+    */
+
+        //Observable pattern using promise and fetch api
+        collectionRef.fetch()
+        .then( async snapshot => {
+            const collectionsMap = convertCollectionSnapshotToMap(snapshot);
+            console.log(collectionsMap);
+            await updateCollections(collectionsMap);
+            this.setState({loading:false});
+        });
+
+        /* //Observable pattern using promise, in firestore this gives data at many levels deep
+        collectionRef.get("https://firestore.googleapis.com/v1/projects/crwn-db-ac008/databases/(default)/documents/collections")
+        .then(response => response.json())
+        .then( collections => console.log(collections)); */
+
     }
 
     render() {
         const {match} = this.props;
         const {loading} = this.state;
-        console.log("--------------",{loading});
+        
         return (//render takes props that needs to be passed to component to be rendered, here match, history, location is passed with isLoading
             <div className='shop-page'>                
                 <Route exact path={`${match.path}`} render={(props) => <CollectionsOverviewWithSpinner isLoading={loading} {...props}/>} />
